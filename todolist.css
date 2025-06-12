@@ -26,6 +26,11 @@ body{
   font-size: 20px;
 }
 
+.head h2{
+  font-size: 20px;
+  font-weight: 800;
+}
+
 .head i:hover{
   transform: scale(1.4);
   transition: all 0.3s ease-in-out;
@@ -33,7 +38,7 @@ body{
 
 .container, .todo-grid{
   display: grid;
-  grid-template-columns: 300px 150px 100px;
+  grid-template-columns: 50vmin 20vmin 15vmin;
   gap: 10px;
   margin-top: 10px;
 }
@@ -66,6 +71,8 @@ input::placeholder{
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(230, 230, 221);
+  word-break: break-word;
+  white-space: pre-line;
 }
 
 .todo-grid .two{
@@ -74,6 +81,9 @@ input::placeholder{
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(230, 230, 221);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo-grid button{
@@ -97,4 +107,58 @@ input::placeholder{
 
 .is-active{
   color: white;
+}
+
+@media (max-width: 900px) {
+  .head{
+    gap: 250px;
+  }
+
+  .todo-grid .one {
+    word-break: break-word; /* breaks long words */
+    white-space: pre-line;  /* respects \n as line breaks */
+  }
+
+  .todo-grid .two{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .head{
+    gap: 20px;
+  }
+
+  .head h2{
+    font-size: 15px;
+  }
+
+  .head i{
+    font-size: 15px;
+  }
+
+  .container, .todo-grid{
+    grid-template-columns: 100%;
+  }
+
+  .container #add{
+    padding: 10px 0;
+  }
+
+  .todo-grid{
+    width: 85%;
+  }
+
+  .todo-grid .one {
+    word-break: break-word; /* breaks long words */
+    white-space: pre-line;  /* respects \n as line breaks */
+  }
+
+  .todo-grid .two{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
