@@ -12,6 +12,9 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(images/bg1.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .head{
@@ -24,11 +27,13 @@ body{
 .head i{
   cursor: pointer;
   font-size: 20px;
+  color: white;
 }
 
 .head h2{
   font-size: 20px;
   font-weight: 800;
+  color: white;
 }
 
 .head i:hover{
@@ -97,8 +102,14 @@ input::placeholder{
 }
 
 .dark-mode{
-  background-color: black;
+  background-image:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(images/bg2.jpg);
+  background-size: cover;
+  background-position: center;
   color: white;
+}
+
+.dark-mode i{
+  color: rgb(255, 255, 255);
 }
 
 .dark-mode .todo-grid{
@@ -107,23 +118,6 @@ input::placeholder{
 
 .is-active{
   color: white;
-}
-
-@media (max-width: 900px) {
-  .head{
-    gap: 250px;
-  }
-
-  .todo-grid .one {
-    word-break: break-word; /* breaks long words */
-    white-space: pre-line;  /* respects \n as line breaks */
-  }
-
-  .todo-grid .two{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 @media (max-width: 500px) {

@@ -13,10 +13,26 @@ function renderTodoList() {
 
   let todoListHTML = '';
 
-  for(let i = 0; i < todoList.length; i++) {
-    const todoObject = todoList[i];
+  todoList.forEach( (todoObject, index) => {
     /*const name = todoObject.name;
     const dueDate = todoObject.dueDate;*/
+    // Destructuring the todoObject to get name and dueDate
+    const {name, dueDate} = todoObject;
+
+    const html = `
+    <div class="one">${name}</div>
+    <div class="two">${dueDate}</div> 
+      <button class="js-delete-todolist-button">
+        Delete
+      </button>`;
+
+    todoListHTML += html;
+  });
+
+  /*for(let i = 0; i < todoList.length; i++) {
+    const todoObject = todoList[i];
+    const name = todoObject.name;
+    const dueDate = todoObject.dueDate;
     // Destructuring the todoObject to get name and dueDate
     const {name, dueDate} = todoObject;
 
@@ -31,11 +47,19 @@ function renderTodoList() {
       >Delete</button>`;
 
     todoListHTML += html;
-  };
+  };*/
 
   todoListContainer.innerHTML = todoListHTML;
   // Clear the input fields after rendering the list
 
+  document.querySelectorAll(".js-delete-todolist-button").forEach((deleteButton, index) => {
+    deleteButton.addEventListener("click", () => {
+      todoList.splice(index, 1);
+        renderTodoList();
+        saveTodoList();
+        localStorage.removeItem('todoList');
+    })
+  });
 };
 
 saveTodoList(); // Save the initial empty list to localStorage
@@ -44,11 +68,14 @@ function saveTodoList() {
   localStorage.setItem('todoList', JSON.stringify(todoList));
 };
 
-
 function addTodo(){
   const inputElement = todoInput;
   const name = inputElement.value;
   const dueDate = dateInputElement.value;
+
+  if(!name || !dueDate) {
+    remove(addTodo());
+  };
   
   todoList.push({name, dueDate});
 
@@ -76,6 +103,12 @@ lightModeToggle.addEventListener('click', () => {
   darkModeToggle.classList.remove('is-active');
   const body = document.body;
   body.classList.remove('dark-mode');
+});
+
+document.body.addEventListener("keydown", (event) => {
+  if(event.key === 'Enter') {
+    addTodo();
+  }
 });
 
 /*const todoList = [
